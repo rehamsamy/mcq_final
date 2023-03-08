@@ -89,4 +89,5 @@ class _AuthViewState extends State<AuthView> {
           ),
         ));
   }
+
 }
