@@ -11,6 +11,7 @@ class AuthView extends StatefulWidget {
 
   @override
   State<AuthView> createState() => _AuthViewState();
+
 }
 
 class _AuthViewState extends State<AuthView> {
