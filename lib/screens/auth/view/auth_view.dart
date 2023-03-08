@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:mcq_final/screens/auth/view/widget/login_widget.dart';
 import 'package:mcq_final/screens/auth/view/widget/register_widget.dart';
 
+
 class AuthView extends StatefulWidget {
   const AuthView({Key? key}) : super(key: key);
 
