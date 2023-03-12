@@ -5,92 +5,90 @@ import 'package:get/get.dart';
 import 'package:mcq_final/screens/auth/view/widget/login_widget.dart';
 import 'package:mcq_final/screens/auth/view/widget/register_widget.dart';
 
-
-
 class AuthView extends StatefulWidget {
   const AuthView({Key? key}) : super(key: key);
 
   @override
   State<AuthView> createState() => _AuthViewState();
-
 }
 
 class _AuthViewState extends State<AuthView> {
-  bool? _isLogin;
+  bool? _isLogin = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: null,
         body: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          decoration: const BoxDecoration(
-              image:
-                  DecorationImage(image: AssetImage('assets/images/back.png'))),
-          child: SingleChildScrollView(
-            reverse: true,
-            child: Column(
-              children: [
-                Image.asset(
-                  'assets/images/child.png',
-                  width: 200,
-                  height: 200,
-                ),
-                Card(
-                  color: kAuthGreyColor,
-                  elevation: 10,
-                  shape: const RoundedRectangleBorder(
-                    borderRadius:
-                        BorderRadius.vertical(top: Radius.circular(20)),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
+      height: double.infinity,
+      decoration: const BoxDecoration(
+          image: DecorationImage(
+        image: AssetImage('assets/images/back.png'),
+        fit: BoxFit.cover,
+      )),
+      child: SingleChildScrollView(
+        reverse: true,
+        child: Column(
+          children: [
+            Image.asset(
+              'assets/images/child.png',
+              width: 200,
+              height: 200,
+            ),
+            Card(
+              color: kAuthGreyColor,
+              elevation: 10,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+              ),
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
+                child: Column(
+                  children: [
+                    Row(
                       children: [
-                        Row(
-                          children: [
-                            AppProgressButton(
+                        Expanded(
+                          child: AppProgressButton(
+                            backgroundColor:
+                                _isLogin! ? kPurpleColor : Colors.white,
+                            text: 'login'.tr,
+                            textColor: _isLogin! ? Colors.white : kPurpleColor,
+                            onPressed: (anim) {
+                              setState(() {
+                                _isLogin = true;
+                              });
+                            },
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 15,
+                        ),
+                        Expanded(
+                          child: AppProgressButton(
                               backgroundColor:
-                                  _isLogin! ? kPurpleColor : kPrimaryColor,
-                              text: 'login'.tr,
+                                  _isLogin! ? Colors.white : kPurpleColor,
+                              text: 'register'.tr,
                               textColor:
-                                  _isLogin! ? kPurpleColor : kPrimaryColor,
+                                  _isLogin! ? kPurpleColor : Colors.white,
                               onPressed: (anim) {
                                 setState(() {
-                                  _isLogin = true;
+                                  _isLogin = false;
                                 });
-                              },
-                            ),
-                            AppProgressButton(
-                                backgroundColor:
-                                    _isLogin! ? kPrimaryColor : kPurpleColor,
-                                text: 'register'.tr,
-                                textColor:
-                                    _isLogin! ? kPrimaryColor : kPurpleColor,
-                                onPressed: (anim) {
-                                  setState(() {
-                                    _isLogin = false;
-                                  });
-                                })
-                          ],
-                        ),
-                        SizedBox(
-                          height: 30,
-                        ),
-                      _isLogin!?LoginForm():RegisterForm(),
-                        SizedBox(height: 30,),
-                        AppProgressButton(backgroundColor: kPurpleColor,textColor: Colors.white,
-                            onPressed: (anim){}),
-                        SizedBox(height: 30,),
+                              }),
+                        )
                       ],
                     ),
-                  ),
-                )
-              ],
-            ),
-          ),
-        ));
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    _isLogin! ? const LoginForm() : const RegisterForm(),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    ));
   }
-
 }
