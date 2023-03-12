@@ -5,6 +5,7 @@ import 'package:mcq_final/helpler/custom_widgets/app_text.dart';
 import 'package:mcq_final/helpler/custom_widgets/app_text_field.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:mcq_final/screens/auth/view/widget/gender_widget.dart';
 class RegisterForm extends StatefulWidget {
   const RegisterForm({Key? key}) : super(key: key);
   @override
@@ -64,10 +65,11 @@ class _RegisterFormState extends State<RegisterForm> {
               ),
             ),
           ),
+          GenderView(),
           CustomTextFormField(
             textColor: Colors.black,
             controller: passwordController,
-            hintText: 'email_hint'.tr,
+            hintText: 'password_hint'.tr,
             keyboardType: TextInputType.text,
             prefixIcon: Icons.work_rounded,
             isPassword: true,
