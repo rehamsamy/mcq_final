@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mcq_final/screens/home/view/tabs/home_tab.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -23,7 +24,7 @@ class _HomeViewState extends State<HomeView> {
       child: PageView(
         controller: _pageController,
         children: const [
-
+       HomeTab()
         ],
       ),
     ));
