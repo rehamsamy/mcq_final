@@ -11,6 +11,7 @@ import 'package:mcq_final/helpler/core_classes/kiwi.dart';
 import 'package:mcq_final/helpler/core_classes/themes.dart';
 import 'package:mcq_final/helpler/custom_widgets/un_focus.dart';
 import 'package:mcq_final/screens/auth/view/auth_view.dart';
+import 'package:mcq_final/screens/home/view/home_view.dart';
 import 'helpler/core_classes/bloc_observer.dart';
 
 final GlobalKey<NavigatorState> navigator = GlobalKey<NavigatorState>();
@@ -20,8 +21,6 @@ void main() async {
   await EasyLocalization.ensureInitialized();
   initServiceLocator();
   initKiwi();
-
-
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]).then((_) {
@@ -34,7 +33,7 @@ void main() async {
             fallbackLocale: const Locale('ar', 'SA'),
             saveLocale: true,
             supportedLocales: const [Locale('ar', 'SA'), Locale('en', 'US')],
-            assetLoader:  CodegenLoader(),
+            assetLoader:  const CodegenLoader(),
             child: ScreenUtilInit(
               builder: (context, child) => const MyApp(),
             ),
@@ -45,7 +44,6 @@ void main() async {
     );
   });
 }
-
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -63,7 +61,7 @@ class MyApp extends StatelessWidget {
         child: child,
       ),
       themeMode: ThemeMode.light,
-      home:  AuthView(),
+      home:  const HomeView(),
     );
   }
 }
