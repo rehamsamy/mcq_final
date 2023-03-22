@@ -14,6 +14,7 @@ const Color kBackgroundDarkColor = Color(0xff191E47);
 const Color kUnSelectedColor = Color(0xff757DB5);
 const Color kAuthGreyColor=Color(0xffF6F6F6);
 const Color kPurpleColor=Color(0xffB86AD6);
+const Color kBlueColor=Colors.blueAccent;
 
 
 double sizeFromHeight(double fraction, {bool removeAppBarSize = true}) {
