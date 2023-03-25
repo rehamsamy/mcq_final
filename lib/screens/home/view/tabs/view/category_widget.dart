@@ -17,8 +17,12 @@ class _CategoryWidgetState extends State<CategoryWidget> {
       padding: const EdgeInsets.all(5),
       child: Column(
         children: const [
-          AppCashedImage(imageUrl: userAvatar,borderWidth: 5,borderColor:kPurpleColor,
-          radius: 40,),
+          SizedBox(
+            height: 180,
+            width: 200,
+            child: AppCashedImage(imageUrl: userAvatar,borderWidth: 5,borderColor:kPurpleColor,
+            radius: 40,),
+          ),
           SizedBox(height: 30,),
           AppText('text',fontSize: 20,fontWeight: FontWeight.bold,)
         ],

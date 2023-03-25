@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mcq_final/helpler/core_classes/app_theme.dart';
 import 'package:mcq_final/helpler/core_classes/constants.dart';
 import 'package:mcq_final/helpler/custom_widgets/app_cached_image.dart';
 import 'package:mcq_final/helpler/custom_widgets/app_text.dart';
@@ -112,34 +111,39 @@ class _HomeTabState extends State<HomeTab> {
                       )
                     ])),
           )),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 15,),
+      body: CustomScrollView(
+        slivers: [
+          SliverList(
+              delegate: SliverChildListDelegate([
+            const SizedBox(
+              height: 15,
+            ),
             AppText(
               'start_play'.tr,
               fontSize: 30,
               fontWeight: FontWeight.bold,
             ),
-            const SizedBox(height:40,),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                     childAspectRatio: 0.6,
-                    // mainAxisExtent: 1,
-                    crossAxisSpacing: 20),
-                itemBuilder: (_, index) {
-                  return const CategoryWidget();
-                },
-                itemCount: 10,
-                shrinkWrap: true,
+            const SizedBox(
+              height: 40,
+            ),
+          ])),
+          SliverPadding(
+            padding: const EdgeInsets.all(8.0),
+            sliver: SliverGrid(
+              delegate:
+                  SliverChildBuilderDelegate((BuildContext context, int index) {
+                return const CategoryWidget();
+              }),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                mainAxisExtent: 280,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
+                childAspectRatio: 6 / 6,
+                crossAxisCount: 2,
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }

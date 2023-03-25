@@ -12,6 +12,7 @@ import 'package:mcq_final/helpler/core_classes/themes.dart';
 import 'package:mcq_final/helpler/custom_widgets/un_focus.dart';
 import 'package:mcq_final/screens/auth/view/auth_view.dart';
 import 'package:mcq_final/screens/home/view/home_view.dart';
+import 'package:mcq_final/screens/question/view/question_screen.dart';
 import 'helpler/core_classes/bloc_observer.dart';
 
 final GlobalKey<NavigatorState> navigator = GlobalKey<NavigatorState>();
@@ -61,7 +62,7 @@ class MyApp extends StatelessWidget {
         child: child,
       ),
       themeMode: ThemeMode.light,
-      home:  const HomeView(),
+      home:  const QuestionScreen(),
     );
   }
 }
