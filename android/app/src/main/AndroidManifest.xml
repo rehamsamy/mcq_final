@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.mcq_final">
+    package="com.mcq_final">
    <application
         android:label="mcq_final"
         android:name="${applicationName}"

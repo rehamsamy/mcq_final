@@ -17,7 +17,7 @@ const Color kPurpleColor=Color(0xffB86AD6);
 const Color kBlueColor=Colors.blueAccent;
 
 
-double sizeFromHeight(double fraction, {bool removeAppBarSize = true}) {
+double sizeFromHeight(double fraction, {bool removeAppBarSize = true}){
   MediaQueryData mediaQuery = MediaQuery.of(Get.context!);
   fraction = (removeAppBarSize
           ? (mediaQuery.size.height - kToolbarHeight - mediaQuery.padding.top)
