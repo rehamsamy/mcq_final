@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:mcq_final/helpler/core_classes/constants.dart';
 import 'package:mcq_final/helpler/custom_widgets/app_cached_image.dart';
 import 'package:mcq_final/helpler/custom_widgets/app_text.dart';
+import 'package:mcq_final/screens/question/bloc/question_model.dart';
 import 'package:mcq_final/screens/question/view/widget/answer_item.dart';
 
 class QuestionWidget extends StatefulWidget {
-  const QuestionWidget({Key? key}) : super(key: key);
+  Results? results;
+   QuestionWidget(this.results, {Key? key}) : super(key: key);
 
   @override
   State<QuestionWidget> createState() => _QuestionWidgetState();
@@ -29,8 +31,8 @@ class _QuestionWidgetState extends State<QuestionWidget> {
         const SizedBox(
           height: 30,
         ),
-        const AppText(
-          'how ARE you may njfimn   cccllfk?',
+         AppText(
+          widget.results?.question??'',
           fontSize: 20,
           maxLines: 2,
           fontWeight: FontWeight.bold,
@@ -50,7 +52,8 @@ class _QuestionWidgetState extends State<QuestionWidget> {
               ),
               itemCount: 4,
               itemBuilder: (_, index) {
-                return const AnswerItem();
+                widget.results?.incorrectAnswers?.insert(3, widget.results?.correctAnswer??'');
+                return  AnswerItem(widget.results?.incorrectAnswers?[index]);
               }),
         )
       ],

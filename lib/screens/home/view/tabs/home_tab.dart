@@ -3,7 +3,12 @@ import 'package:mcq_final/helpler/core_classes/constants.dart';
 import 'package:mcq_final/helpler/custom_widgets/app_cached_image.dart';
 import 'package:mcq_final/helpler/custom_widgets/app_text.dart';
 import 'package:get/get.dart';
+import 'package:mcq_final/screens/home/bloc/bloc.dart';
+import 'package:mcq_final/screens/home/bloc/events.dart';
+import 'package:mcq_final/screens/home/bloc/states.dart';
 import 'package:mcq_final/screens/home/view/tabs/view/category_widget.dart';
+import 'package:kiwi/kiwi.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeTab extends StatefulWidget {
   const HomeTab({Key? key}) : super(key: key);
@@ -13,6 +18,13 @@ class HomeTab extends StatefulWidget {
 }
 
 class _HomeTabState extends State<HomeTab> {
+  final _bloc = KiwiContainer().resolve<CategoryBloc>();
+
+  @override
+  void initState() {
+    _bloc.add(CategoryEventStart());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -127,21 +139,44 @@ class _HomeTabState extends State<HomeTab> {
               height: 40,
             ),
           ])),
-          SliverPadding(
-            padding: const EdgeInsets.all(8.0),
-            sliver: SliverGrid(
-              delegate:
-                  SliverChildBuilderDelegate((BuildContext context, int index) {
-                return const CategoryWidget();
-              }),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                mainAxisExtent: 280,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-                childAspectRatio: 6 / 6,
-                crossAxisCount: 2,
-              ),
-            ),
+          SliverToBoxAdapter(
+            child: BlocBuilder(
+                bloc: _bloc,
+                builder: (context, state) {
+                  if (state is CategoryEventStart) {
+                    return const SizedBox();
+                  } else if (state is CategoryStateSuccess) {
+                    return GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              mainAxisSpacing: 0,
+                              crossAxisSpacing: 0,
+                              mainAxisExtent: 270),
+                      itemCount: state.data!.categories?.length,
+                      itemBuilder: (_, index) => Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child:
+                              CategoryWidget(state.data!.categories![index])),
+                      shrinkWrap: true,
+                    );
+                    // return SliverGrid(
+                    //   delegate:
+                    //   SliverChildBuilderDelegate((BuildContext context, int index) {
+                    //     return const CategoryWidget();
+                    //   }),
+                    //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    //     mainAxisExtent: 280,
+                    //     mainAxisSpacing: 10,
+                    //     crossAxisSpacing: 10,
+                    //     childAspectRatio: 6 / 6,
+                    //     crossAxisCount: 2,
+                    //   ),
+                    // );
+                  } else {
+                    return const SizedBox();
+                  }
+                }),
           )
         ],
       ),

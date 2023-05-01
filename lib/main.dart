@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
         child: child,
       ),
       themeMode: ThemeMode.light,
-      home:  const QuestionScreen(),
+      home:  const HomeView(),
     );
   }
 }
