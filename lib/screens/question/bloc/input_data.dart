@@ -4,7 +4,8 @@ class QuestionInputData {
   Map<String, dynamic> toJson() {
     return {
       "category": categoryId,
-      'amount':10
+      'amount':10,
+      "type":"multiple"
     };
   }
 }
