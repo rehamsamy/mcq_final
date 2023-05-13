@@ -152,7 +152,7 @@ class _HomeTabState extends State<HomeTab> {
                               crossAxisCount: 2,
                               mainAxisSpacing: 0,
                               crossAxisSpacing: 0,
-                              mainAxisExtent: 270),
+                              mainAxisExtent: 280),
                       itemCount: state.data!.categories?.length,
                       itemBuilder: (_, index) => Padding(
                           padding: const EdgeInsets.all(12.0),

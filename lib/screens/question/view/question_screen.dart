@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:mcq_final/screens/question/bloc/bloc.dart';
 import 'package:mcq_final/screens/question/bloc/events.dart';
@@ -11,9 +13,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class QuestionScreen extends StatefulWidget {
   num? categoryId;
+  String?catName;
 
 
-  QuestionScreen({Key? key, this.categoryId}) : super(key: key);
+  QuestionScreen({Key? key, this.categoryId,this.catName}) : super(key: key);
 
   @override
   State<QuestionScreen> createState() => _QuestionScreenState();
@@ -49,6 +52,13 @@ class _QuestionScreenState extends State<QuestionScreen> {
                 return const SizedBox();
               } else if (state is QuestionStateSuccess) {
                 List<Results>? results=state.data?.results;
+              List<Results>? catList=[];
+              results?.map((e){
+                if(e.catId==widget.categoryId&&e.difficulty==widget.catName){
+                  catList.add(e);
+                  return e;
+                }
+              }).toList()??[];
                 return Column(
                   children: [
                     const SizedBox(
@@ -70,7 +80,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                     ),
                     Flexible(
                       child: PageView(
-                        children: results?.map((e) => QuestionWidget(e)).toList()??[]
+                         children: catList?.map((e) =>QuestionWidget(e)).toList()??[]
                         // const [
                         //   QuestionWidget(),
                         //   QuestionWidget(),

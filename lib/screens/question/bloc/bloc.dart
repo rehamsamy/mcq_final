@@ -15,12 +15,12 @@ class QuestionBloc extends Bloc<QuestionEvents, QuestionStates> {
       QuestionEventStart event,
     Emitter<QuestionStates> emit,
   ) async {
-    ServerGate.BASE_URL='https://opentdb.com/api.php';
+   // ServerGate.BASE_URL='https://opentdb.com/api.php';
     //    https://opentdb.com/api_category.php
     Get.log('data sucess');
     emit(QuestionStateStart());
     CustomResponse response = await serverGate.getFromServer(
-        url: "",params: event.inputData!.toJson() );
+        url: 'questions.json',params: event.inputData!.toJson() );
     if (response.success && response.response!.data["response_code"] == 0) {
       Get.log('data sucess');
       QuestionModel model=QuestionModel.fromJson(response.response!.data);

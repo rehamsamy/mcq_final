@@ -18,11 +18,11 @@ class _QuestionWidgetState extends State<QuestionWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(
+         SizedBox(
           height: 250,
           width: double.infinity,
           child: AppCashedImage(
-            imageUrl: userAvatar,
+            imageUrl:( widget.results?.imgUrl=="")?userAvatar:widget.results?.imgUrl??userAvatar,
             borderWidth: 5,
             borderColor: kPurpleColor,
             radius: 40,
